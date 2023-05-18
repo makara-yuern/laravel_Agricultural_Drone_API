@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
-        return $user;
+        return response()->json(['success' => true, 'data' => $user], 200);
     }
 
     /**
@@ -21,7 +21,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]);
+        return response()->json(['success' => true, 'data' => $user], 200);
     }
 
     /**
@@ -29,7 +34,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        return response()->json(['success' => true, 'data' => $user], 200);
     }
 
     /**
@@ -37,7 +43,13 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]);
+        return response()->json(['success' => true, 'data' => $user], 200);
     }
 
     /**
@@ -45,6 +57,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['success' => true, 'message' => "delete successdully"], 200);
     }
 }
