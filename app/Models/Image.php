@@ -10,9 +10,9 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'feildName',
+        'type',
         'date',
-        'metadata',
+        'area',
         'dron_id',
     ];
 }
