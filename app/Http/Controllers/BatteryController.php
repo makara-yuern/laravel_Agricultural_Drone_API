@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Battery;
 use Illuminate\Http\Request;
 
 class BatteryController extends Controller
@@ -11,7 +12,8 @@ class BatteryController extends Controller
      */
     public function index()
     {
-        //
+        $batterys = Battery::all();
+        return response()->json(['success' => true, 'data' => $batterys], 200);
     }
 
     /**
@@ -19,7 +21,13 @@ class BatteryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $batterys = Battery::create(
+            [
+                'currentBatteries' => request('currentBatteries'),
+                'capacity' => request('capacity'),
+            ]
+        );
+        return response()->json(['success' => true, 'data' => $batterys], 201);
     }
 
     /**
@@ -27,7 +35,8 @@ class BatteryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $batterys = Battery::find($id);
+        return response()->json(['success' =>true, 'data' => $batterys],200);
     }
 
     /**
@@ -35,7 +44,14 @@ class BatteryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $batterys = Battery::find($id);
+        $batterys -> update(
+            [
+                'currentBatteries' => request('currentBatteries'),
+                'capacity' => request('capacity'),
+            ]
+            );
+            return response()->json(['success' =>true, 'data' => $batterys], 200);
     }
 
     /**
@@ -43,6 +59,8 @@ class BatteryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $batterys = Battery::find($id);
+        $batterys->delete();
+        return response()->json(['success' =>true, 'message'=>'delete successfully'], 200);
     }
 }

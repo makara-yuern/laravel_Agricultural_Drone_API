@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Battery;
+use App\Models\Drone;
 use Illuminate\Http\Request;
 
 class DroneController extends Controller
@@ -11,7 +13,8 @@ class DroneController extends Controller
      */
     public function index()
     {
-        //
+        $drones = Drone::all();
+        return response()->json(['success' => true, 'data' => $drones], 200);
     }
 
     /**
@@ -19,7 +22,19 @@ class DroneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $drones = Drone::create(
+            [
+                'droneTypes' => request('droneTypes'),
+                'modelNumber' => request('modelNumber'),
+                'manufacturer' => request('manufacturer'),
+                'size' => request('size'),
+                'time' => request('time'),
+                'purpose' => request('purpose'),
+                'farmer_id' => request('farmer_id'),
+                'user_id' => request('user_id'),
+            ]
+            );
+            return response()->json(['success' => true, 'data' => $drones], 201);
     }
 
     /**
@@ -27,7 +42,9 @@ class DroneController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $drones = Drone::find($id);
+        return response()->json(['success' =>true, 'data' => $drones],200);
+
     }
 
     /**
@@ -35,7 +52,18 @@ class DroneController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $drones = Drone::find($id);
+        $drones->update(
+            [
+                'droneTypes' => request('droneTypes'),
+                'modelNumber' => request('modelNumber'),
+                'manufacturer' => request('manufacturer'),
+                'size' => request('size'),
+                'time' => request('time'),
+                'purpose' => request('purpose'),
+            ]
+            );
+            return response()->json(['success' =>true, 'data' => $drones], 200);
     }
 
     /**
@@ -43,6 +71,8 @@ class DroneController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $drones = Drone::find($id);
+        $drones->delete();
+        return response()->json(['success' =>true, 'message'=>'delete successfully'], 200);
     }
 }
