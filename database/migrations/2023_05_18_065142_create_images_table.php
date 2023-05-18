@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string("feildName");
+            $table->string("type");
             $table->date("date");
-            $table->string("metadata");
+            $table->string("area");
             
             $table->unsignedBigInteger('dron_id');
             $table->foreign('dron_id')->references('id')->on('drones')->onDelete('cascade');
