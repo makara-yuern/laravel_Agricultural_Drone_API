@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Farm;
 use Illuminate\Http\Request;
 
 class FarmController extends Controller
@@ -11,7 +12,8 @@ class FarmController extends Controller
      */
     public function index()
     {
-        //
+        $farms = Farm::all();
+        return response()->json(['success' => true, 'data' => $farms], 200);
     }
 
     /**
@@ -19,7 +21,14 @@ class FarmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $farms = Farm::create(
+            [
+                'name' => request('name'),
+                'address' => request('address'),
+                'farmer_id' => request('farmer_id'),
+            ]
+        );
+            return response()->json(['success' => true, 'data' => $farms], 201);
     }
 
     /**
@@ -27,7 +36,8 @@ class FarmController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $farms = Farm::find($id);
+        return response()->json(['success' =>true, 'data' => $farms],200);
     }
 
     /**
@@ -35,7 +45,14 @@ class FarmController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $farms = Farm::find($id);
+        $farms->update(
+            [
+                'name' => request('name'),
+                'address' => request('address'),
+            ]
+        );
+        return response()->json(['success' =>true, 'data' => $farms], 200);
     }
 
     /**
@@ -43,6 +60,8 @@ class FarmController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $farms = Farm::find($id);
+        $farms->delete();
+        return response()->json(['success' =>true, 'message'=>'delete successfully'], 200);
     }
 }

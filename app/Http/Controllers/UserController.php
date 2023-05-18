@@ -12,12 +12,7 @@ class UserController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         
-=======
-        $user = User::all();
-        return response()->json(['success' => true, 'data' => $user], 200);
->>>>>>> e2d1cd2395c4e52521dfce1f3f48a0a50eb526bd
     }
 
     /**

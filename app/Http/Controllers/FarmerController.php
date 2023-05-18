@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Farmer;
 use Illuminate\Http\Request;
 
 class FarmerController extends Controller
@@ -11,7 +12,8 @@ class FarmerController extends Controller
      */
     public function index()
     {
-        //
+        $farmers = Farmer::all();
+        return response()->json(['success' => true, 'data' => $farmers], 200);
     }
 
     /**
@@ -19,7 +21,15 @@ class FarmerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $farmers = Farmer::create(
+            [
+                'name' => request('name'),
+                'age' => request('age'),
+                'email' => request('email'),
+                'password' => request('password'),
+            ]
+            );
+            return response()->json(['success' => true, 'data' => $farmers], 201);
     }
 
     /**
@@ -27,7 +37,8 @@ class FarmerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $farmers = Farmer::find($id);
+        return response()->json(['success' =>true, 'data' => $farmers],200);
     }
 
     /**
@@ -35,7 +46,16 @@ class FarmerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $farmers = Farmer::find($id);
+        $farmers->update(
+            [
+                'name' => request('name'),
+                'age' => request('age'),
+                'email' => request('email'),
+                'password' => request('password'),
+            ]
+            );
+            return response()->json(['success' =>true, 'data' => $farmers], 200);
     }
 
     /**
@@ -43,6 +63,9 @@ class FarmerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $farmers = Farmer::find($id);
+        $farmers->delete();
+        return response()->json(['success' =>true, 'message'=>'delete successfully'], 200);
     }
 }
+
