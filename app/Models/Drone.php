@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Drone extends Model
 {
@@ -19,4 +20,8 @@ class Drone extends Model
         'farmer_id',
         'user_id',
     ];
+    public function battery(): HasOne
+    {
+        return $this->hasOne(Battery::class);
+    }
 }
