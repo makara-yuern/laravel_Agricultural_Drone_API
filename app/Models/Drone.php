@@ -18,5 +18,6 @@ class Drone extends Model
         'purpose',
         'farmer_id',
         'user_id',
+        'location_id',
     ];
 }

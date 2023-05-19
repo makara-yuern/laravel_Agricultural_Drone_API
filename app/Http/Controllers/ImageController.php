@@ -24,7 +24,7 @@ class ImageController extends Controller
         $image = Image::create([
             'type' => $request->input('type'),
             'date' => $request->input('date'),
-            'area' => $request->input('aarea'),
+            'area' => $request->input('area'),
             'dron_id' => $request->input('dron_id'),
         ]);
         return response()->json(['success' => true, 'data' => $image], 200);
