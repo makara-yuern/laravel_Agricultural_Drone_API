@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Battery extends Model
 {
@@ -13,10 +14,12 @@ class Battery extends Model
     protected $fillable = [
         'currentBatteries',
         'capacity',
-        'dron_id',
+        'drone_id',
     ];
     public function drone(): BelongsTo
     {
         return $this->belongsTo(Drone::class);
     }
+
+    
 }

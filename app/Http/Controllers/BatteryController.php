@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BatteryResource;
 use App\Models\Battery;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class BatteryController extends Controller
             [
                 'currentBatteries' => request('currentBatteries'),
                 'capacity' => request('capacity'),
-                'dron_id' => request('dron_id'),
+                'drone_id' => request('drone_id'),
             ]
         );
         return response()->json(['success' => true, 'data' => $batterys], 201);
