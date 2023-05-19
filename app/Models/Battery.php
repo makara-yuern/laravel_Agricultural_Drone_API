@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Battery extends Model
 {
@@ -14,6 +15,7 @@ class Battery extends Model
         'capacity',
         'drone_id',
     ];
+<<<<<<< HEAD
     
     public static function store($reques, $id = null)
     {
@@ -22,5 +24,10 @@ class Battery extends Model
         $battery = self::updateOrCreate(['id' => $id], $battery);
 
         return $battery;
+=======
+    public function drone(): BelongsTo
+    {
+        return $this->belongsTo(Drone::class);
+>>>>>>> 3e9a8d02b861ccadb07c57547548fe672bb714d4
     }
 }

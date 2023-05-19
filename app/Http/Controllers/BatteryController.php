@@ -24,8 +24,19 @@ class BatteryController extends Controller
      */
     public function store(BatteryRequest $request)
     {
+<<<<<<< HEAD
         $batteries = Battery::store($request);
         return response()->json(['success' => true, 'data' => $batteries], 201);
+=======
+        $batterys = Battery::create(
+            [
+                'currentBatteries' => request('currentBatteries'),
+                'capacity' => request('capacity'),
+                'dron_id' => request('dron_id'),
+            ]
+        );
+        return response()->json(['success' => true, 'data' => $batterys], 201);
+>>>>>>> 3e9a8d02b861ccadb07c57547548fe672bb714d4
     }
 
     /**
