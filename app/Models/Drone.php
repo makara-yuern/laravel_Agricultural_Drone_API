@@ -18,6 +18,14 @@ class Drone extends Model
         'purpose',
         'farmer_id',
         'user_id',
-        'location_id',
     ];
+
+    public static function store($reques, $id = null)
+    {
+        $drone = $reques->only(['droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id']);
+
+        $drone = self::updateOrCreate(['id' => $id], $drone);
+
+        return $drone;
+    }
 }

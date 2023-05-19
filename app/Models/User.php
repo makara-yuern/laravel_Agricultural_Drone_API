@@ -23,6 +23,15 @@ class User extends Authenticatable
         'password',
     ];
 
+    public static function store($reques, $id = null)
+    {
+        $user = $reques->only(['name', 'email','password']);
+
+        $user = self::updateOrCreate(['id' => $id], $user);
+
+        return $user;
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

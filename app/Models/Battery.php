@@ -12,6 +12,15 @@ class Battery extends Model
     protected $fillable = [
         'currentBatteries',
         'capacity',
-        'dron_id',
+        'drone_id',
     ];
+    
+    public static function store($reques, $id = null)
+    {
+        $battery = $reques->only(['currentBatteries', 'capacity','drone_id']);
+
+        $battery = self::updateOrCreate(['id' => $id], $battery);
+
+        return $battery;
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FarmRequest;
+use App\Http\Resources\FarmResource;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 
@@ -13,22 +15,17 @@ class FarmController extends Controller
     public function index()
     {
         $farms = Farm::all();
+        $farms = FarmResource::collection($farms);
         return response()->json(['success' => true, 'data' => $farms], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FarmRequest $request)
     {
-        $farms = Farm::create(
-            [
-                'name' => request('name'),
-                'address' => request('address'),
-                'farmer_id' => request('farmer_id'),
-            ]
-        );
-            return response()->json(['success' => true, 'data' => $farms], 201);
+        $farms = Farm::store($request);
+        return response()->json(['success' => true, 'data' => $farms], 201);
     }
 
     /**
@@ -37,21 +34,16 @@ class FarmController extends Controller
     public function show(string $id)
     {
         $farms = Farm::find($id);
+        $farms = new FarmResource($farms);
         return response()->json(['success' =>true, 'data' => $farms],200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FarmRequest $request, string $id)
     {
-        $farms = Farm::find($id);
-        $farms->update(
-            [
-                'name' => request('name'),
-                'address' => request('address'),
-            ]
-        );
+        $farms = Farm::store($request, $id);
         return response()->json(['success' =>true, 'data' => $farms], 200);
     }
 

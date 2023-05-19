@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string("currentBatteries");
             $table->string("capacity");
 
-            $table->unsignedBigInteger('dron_id');
-            $table->foreign('dron_id')->references('id')->on('drones')->onDelete('cascade');
+            $table->unsignedBigInteger('drone_id');
+            $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');
             $table->timestamps();
         });
     }

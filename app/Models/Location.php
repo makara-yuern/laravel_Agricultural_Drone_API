@@ -14,4 +14,13 @@ class Location extends Model
         'longitude',
         'altitude',
     ];
+
+    public static function store($reques, $id = null)
+    {
+        $location = $reques->only(['latitude', 'longitude','altitude']);
+
+        $location = self::updateOrCreate(['id' => $id], $location);
+
+        return $location;
+    }
 }

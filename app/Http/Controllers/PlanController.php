@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlanRequest;
+use App\Http\Resources\PlanResource;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -13,21 +15,16 @@ class PlanController extends Controller
     public function index()
     {
         $plan = Plan::all();
+        $plan = PlanResource::collection($plan);
         return response()->json(['success' => true, 'data' => $plan], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PlanRequest $request)
     {
-        $plan = Plan::create([
-            'planTypes' => $request->input('planTypes'),
-            'location' => $request->input('location'),
-            'cropTypes' => $request->input('cropTypes'),
-            'date' => $request->input('date'),
-            'time' => $request->input('time'),
-        ]);
+        $plan = Plan::store($request);
         return response()->json(['success' => true, 'data' => $plan], 200);
     }
 
@@ -37,22 +34,16 @@ class PlanController extends Controller
     public function show(string $id)
     {
         $plan = Plan::find($id);
+        $plan = new PlanResource($plan);
         return response()->json(['success' => true, 'data' => $plan], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PlanRequest $request, string $id)
     {
-        $plan = Plan::find($id);
-        $plan->update([
-            'planTypes' => $request->input('planTypes'),
-            'location' => $request->input('location'),
-            'cropTypes' => $request->input('cropTypes'),
-            'date' => $request->input('date'),
-            'time' => $request->input('time'),
-        ]);
+        $plan = Plan::store($request, $id);
         return response()->json(['success' => true, 'data' => $plan], 200);
     }
 

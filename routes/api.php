@@ -85,7 +85,7 @@ Route::put('/drone/{id}', [DroneController::class, 'update']);
 Route::delete('/drone/{id}', [DroneController::class, 'destroy']);
 
 // -----------------------API Route for battery-----------------------------------------
-Route::get('/batterys', [BatteryController::class, 'index']);
+Route::get('/batteries', [BatteryController::class, 'index']);
 Route::post('/battery', [BatteryController::class, 'store']);
 Route::get('/battery/{id}', [BatteryController::class, 'show']);
 Route::put('/battery/{id}', [BatteryController::class, 'update']);

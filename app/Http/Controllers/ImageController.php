@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImageRequest;
+use App\Http\Resources\ImageResource;
 use App\Models\Image;
 use Illuminate\Http\Request;
 
@@ -13,20 +15,16 @@ class ImageController extends Controller
     public function index()
     {
         $image = Image::all();
+        $image = ImageResource::collection($image);
         return response()->json(['success' => true, 'data' => $image], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
-        $image = Image::create([
-            'type' => $request->input('type'),
-            'date' => $request->input('date'),
-            'area' => $request->input('area'),
-            'dron_id' => $request->input('dron_id'),
-        ]);
+        $image = Image::store($request);
         return response()->json(['success' => true, 'data' => $image], 200);
     }
 
@@ -36,21 +34,16 @@ class ImageController extends Controller
     public function show(string $id)
     {
         $image = Image::find($id);
+        $image = new ImageResource($image);
         return response()->json(['success' => true, 'data' => $image], 200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ImageRequest $request, string $id)
     {
-        $image = Image::find($id);
-        $image->update([
-            'type' => $request->input('type'),
-            'date' => $request->input('date'),
-            'area' => $request->input('aarea'),
-            'dron_id' => $request->input('dron_id'),
-        ]);
+        $image = Image::store($request, $id);
         return response()->json(['success' => true, 'data' => $image], 200);
     }
 

@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class MapFarm extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'map_id',
-        'dron_id',
-    ];
 }

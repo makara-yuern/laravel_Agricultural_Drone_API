@@ -15,4 +15,13 @@ class Farmer extends Model
         'email',
         'password',
     ];
+
+    public static function store($reques, $id = null)
+    {
+        $farmer = $reques->only(['name','age', 'email','password']);
+
+        $farmer = self::updateOrCreate(['id' => $id], $farmer);
+
+        return $farmer;
+    }
 }

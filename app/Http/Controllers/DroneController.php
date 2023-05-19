@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DroneRequest;
+use App\Http\Resources\DroneResource;
 use App\Models\Battery;
 use App\Models\Drone;
 use Illuminate\Http\Request;
@@ -14,28 +16,17 @@ class DroneController extends Controller
     public function index()
     {
         $drones = Drone::all();
+        $drones = DroneResource::collection($drones);
         return response()->json(['success' => true, 'data' => $drones], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DroneRequest $request)
     {
-        $drones = Drone::create(
-            [
-                'droneTypes' => request('droneTypes'),
-                'modelNumber' => request('modelNumber'),
-                'manufacturer' => request('manufacturer'),
-                'size' => request('size'),
-                'time' => request('time'),
-                'purpose' => request('purpose'),
-                'farmer_id' => request('farmer_id'),
-                'user_id' => request('user_id'),
-                'location_id' => request('location_id'),
-            ]
-            );
-            return response()->json(['success' => true, 'data' => $drones], 201);
+        $drones = Drone::store($request);
+        return response()->json(['success' => true, 'data' => $drones], 201);
     }
 
     /**
@@ -44,6 +35,7 @@ class DroneController extends Controller
     public function show(string $id)
     {
         $drones = Drone::find($id);
+        $drones = new DroneResource($drones);
         return response()->json(['success' =>true, 'data' => $drones],200);
 
     }
@@ -51,20 +43,10 @@ class DroneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(DroneRequest $request, string $id)
     {
-        $drones = Drone::find($id);
-        $drones->update(
-            [
-                'droneTypes' => request('droneTypes'),
-                'modelNumber' => request('modelNumber'),
-                'manufacturer' => request('manufacturer'),
-                'size' => request('size'),
-                'time' => request('time'),
-                'purpose' => request('purpose'),
-            ]
-            );
-            return response()->json(['success' =>true, 'data' => $drones], 200);
+        $drones = Drone::store($request, $id);
+        return response()->json(['success' =>true, 'data' => $drones], 200);
     }
 
     /**

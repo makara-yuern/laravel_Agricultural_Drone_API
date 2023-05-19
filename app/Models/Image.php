@@ -13,6 +13,15 @@ class Image extends Model
         'type',
         'date',
         'area',
-        'dron_id',
+        'drone_id',
     ];
+
+    public static function store($reques, $id = null)
+    {
+        $image = $reques->only(['type', 'date','area', 'drone_id']);
+
+        $image = self::updateOrCreate(['id' => $id], $image);
+
+        return $image;
+    }
 }
