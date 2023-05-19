@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("modelNumber");
             $table->string("manufacturer");
             $table->string("size");
-            $table->time("time");
+            $table->string("time");
             $table->text("purpose");
             $table->unsignedBigInteger('farmer_id');
             $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');

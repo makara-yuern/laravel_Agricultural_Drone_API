@@ -32,6 +32,7 @@ class DroneController extends Controller
                 'purpose' => request('purpose'),
                 'farmer_id' => request('farmer_id'),
                 'user_id' => request('user_id'),
+                'location_id' => request('location_id'),
             ]
             );
             return response()->json(['success' => true, 'data' => $drones], 201);
