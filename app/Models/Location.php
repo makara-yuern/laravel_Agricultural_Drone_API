@@ -15,8 +15,13 @@ class Location extends Model
         'longitude',
         'altitude',
     ];
-    public function drone(): HasMany
+
+    public static function store($reques, $id = null)
     {
-        return $this->hasMany(Drone::class);
+        $location = $reques->only(['latitude', 'longitude','altitude']);
+
+        $location = self::updateOrCreate(['id' => $id], $location);
+
+        return $location;
     }
 }

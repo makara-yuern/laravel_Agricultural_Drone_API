@@ -16,4 +16,13 @@ class Plan extends Model
         'date',
         'time',
     ];
+
+    public static function store($reques, $id = null)
+    {
+        $user = $reques->only(['planTypes', 'location','cropTypes', 'date', 'time']);
+
+        $user = self::updateOrCreate(['id' => $id], $user);
+
+        return $user;
+    }
 }

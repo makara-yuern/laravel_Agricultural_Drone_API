@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FarmerRequest;
+use App\Http\Requests\FarmRequest;
+use App\Http\Resources\FarmerResource;
+use App\Http\Resources\FarmResource;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
 
@@ -13,23 +17,17 @@ class FarmerController extends Controller
     public function index()
     {
         $farmers = Farmer::all();
+        $farmers = FarmResource::collection($farmers);
         return response()->json(['success' => true, 'data' => $farmers], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FarmerRequest $request)
     {
-        $farmers = Farmer::create(
-            [
-                'name' => request('name'),
-                'age' => request('age'),
-                'email' => request('email'),
-                'password' => request('password'),
-            ]
-            );
-            return response()->json(['success' => true, 'data' => $farmers], 201);
+        $farmers = FarmRequest::store($request);
+        return response()->json(['success' => true, 'data' => $farmers], 201);
     }
 
     /**
@@ -38,24 +36,17 @@ class FarmerController extends Controller
     public function show(string $id)
     {
         $farmers = Farmer::find($id);
+        $farmers = new FarmerResource($farmers);
         return response()->json(['success' =>true, 'data' => $farmers],200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FarmRequest $request, string $id)
     {
-        $farmers = Farmer::find($id);
-        $farmers->update(
-            [
-                'name' => request('name'),
-                'age' => request('age'),
-                'email' => request('email'),
-                'password' => request('password'),
-            ]
-            );
-            return response()->json(['success' =>true, 'data' => $farmers], 200);
+        $farmers = Farmer::store($request, $id);
+        return response()->json(['success' =>true, 'data' => $farmers], 200);
     }
 
     /**

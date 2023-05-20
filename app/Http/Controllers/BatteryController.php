@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\BatteryResource;
 use App\Models\Battery;
 use Illuminate\Http\Request;
 
@@ -13,23 +12,18 @@ class BatteryController extends Controller
      */
     public function index()
     {
-        $batterys = Battery::all();
-        return response()->json(['success' => true, 'data' => $batterys], 200);
+        $battery = Battery::all();
+        $batteries = BatteryResource::collection($battery);
+        return response()->json(['success' => true, 'data' => $batteries], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BatteryRequest $request)
     {
-        $batterys = Battery::create(
-            [
-                'currentBatteries' => request('currentBatteries'),
-                'capacity' => request('capacity'),
-                'drone_id' => request('drone_id'),
-            ]
-        );
-        return response()->json(['success' => true, 'data' => $batterys], 201);
+        $batteries = Battery::store($request);
+        return response()->json(['success' => true, 'data' => $batteries], 201);
     }
 
     /**
@@ -37,23 +31,18 @@ class BatteryController extends Controller
      */
     public function show(string $id)
     {
-        $batterys = Battery::find($id);
-        return response()->json(['success' =>true, 'data' => $batterys],200);
+        $battery = Battery::find($id);
+        $batteries = new BatteryResource($battery);
+        return response()->json(['success' =>true, 'data' => $batteries],200);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BatteryRequest $request, string $id)
     {
-        $batterys = Battery::find($id);
-        $batterys -> update(
-            [
-                'currentBatteries' => request('currentBatteries'),
-                'capacity' => request('capacity'),
-            ]
-            );
-            return response()->json(['success' =>true, 'data' => $batterys], 200);
+        $batteries = Battery::store($request, $id);
+        return response()->json(['success' =>true, 'data' => $batteries], 200);
     }
 
     /**

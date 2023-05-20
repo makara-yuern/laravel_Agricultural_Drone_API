@@ -16,8 +16,13 @@ class Farmer extends Model
         'email',
         'password',
     ];
-    public function drone(): HasMany
+
+    public static function store($reques, $id = null)
     {
-        return $this->hasMany(Drone::class);
+        $farmer = $reques->only(['name','age', 'email','password']);
+
+        $farmer = self::updateOrCreate(['id' => $id], $farmer);
+
+        return $farmer;
     }
 }

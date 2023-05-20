@@ -11,6 +11,15 @@ class Map extends Model
 
     protected $fillable = [
         'place',
-        'dron_id',
+        'drone_id',
     ];
+
+    public static function store($reques, $id = null)
+    {
+        $map = $reques->only(['place', 'drone_id']);
+
+        $map = self::updateOrCreate(['id' => $id], $map);
+
+        return $map;
+    }
 }
