@@ -17,7 +17,7 @@ class MapResource extends JsonResource
         return [
             'id' => $this->id,
             'place' => $this->place,
-            'drone_id' => $this->drone,
+            'drone' => $this->drone,
         ];
     }
 }

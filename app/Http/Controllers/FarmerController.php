@@ -17,7 +17,7 @@ class FarmerController extends Controller
     public function index()
     {
         $farmers = Farmer::all();
-        $farmers = FarmResource::collection($farmers);
+        $farmers = FarmerResource::collection($farmers);
         return response()->json(['success' => true, 'data' => $farmers], 200);
     }
 
@@ -26,7 +26,7 @@ class FarmerController extends Controller
      */
     public function store(FarmerRequest $request)
     {
-        $farmers = FarmRequest::store($request);
+        $farmers = Farmer::store($request);
         return response()->json(['success' => true, 'data' => $farmers], 201);
     }
 
@@ -43,7 +43,7 @@ class FarmerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(FarmRequest $request, string $id)
+    public function update(FarmerRequest $request, string $id)
     {
         $farmers = Farmer::store($request, $id);
         return response()->json(['success' =>true, 'data' => $farmers], 200);
