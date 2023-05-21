@@ -19,10 +19,20 @@ class Farmer extends Model
 
     public static function store($reques, $id = null)
     {
-        $farmer = $reques->only(['name','age', 'email','password']);
+        $farmer = $reques->only(['name', 'age','email','password']);
 
         $farmer = self::updateOrCreate(['id' => $id], $farmer);
 
         return $farmer;
+    }
+
+    public function drones():HasMany
+    {
+        return $this->hasMany(Drone::class);
+    }
+
+    public function farms():HasMany
+    {
+        return $this->hasMany(Farm::class);
     }
 }

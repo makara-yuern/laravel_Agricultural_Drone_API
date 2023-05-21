@@ -18,7 +18,7 @@ class FarmResource extends JsonResource
             'id' => $this->id,
             'name' => $this->type,
             'address' => $this->date,
-            'farmer_id' => $this->farm,
+            'farmer' => $this->farmer,
         ];
     }
 }

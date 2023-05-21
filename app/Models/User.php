@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $user;
     }
 
+    public function drones():HasMany
+    {
+        return $this->hasMany(Drone::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
