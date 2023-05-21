@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
 use App\Models\Battery;
 use App\Models\Drone;

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BatteryRequest;
+use App\Http\Resources\BatteryResource;
 use App\Models\Battery;
 use Illuminate\Http\Request;
 
@@ -12,8 +14,9 @@ class BatteryController extends Controller
      */
     public function index()
     {
-        $battery = Battery::all();
-        $batteries = BatteryResource::collection($battery);
+        // dd(2);
+        $batteries = Battery::all();
+        $batteries = BatteryResource::collection($batteries);
         return response()->json(['success' => true, 'data' => $batteries], 200);
     }
 
