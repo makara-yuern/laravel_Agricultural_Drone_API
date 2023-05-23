@@ -18,6 +18,11 @@ class Plan extends Model
         'time',
     ];
 
+    public function drones(): BelongsToMany
+    {
+        return $this->belongsToMany(Drone::class, 'drone_plans');
+    }
+
     public static function store($reques, $id = null)
     {
         $user = $reques->only(['planTypes', 'location','cropTypes', 'date', 'time']);
@@ -25,10 +30,5 @@ class Plan extends Model
         $user = self::updateOrCreate(['id' => $id], $user);
 
         return $user;
-    }
-
-    public function drones(): BelongsToMany
-    {
-        return $this->belongsToMany(Drone::class, 'drone_plans');
     }
 }
