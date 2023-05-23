@@ -27,7 +27,7 @@ class Drone extends Model
         'user_id',
     ];
 
-    public function plans(): BelongsToMany
+    public function plan(): BelongsToMany
     {
         return $this->belongsToMany(Plan::class, 'drone_plans');
     }
@@ -39,7 +39,7 @@ class Drone extends Model
         $drone = self::updateOrCreate(['id' => $id], $drone);
 
         $drones = request('plans');
-        $drone->plans()->sync($drones);
+        $drone->plan()->sync($drones);
 
         return $drone;
     }
