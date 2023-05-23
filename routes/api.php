@@ -92,4 +92,4 @@ Route::put('/battery/{id}', [BatteryController::class, 'update']);
 Route::delete('/battery/{id}', [BatteryController::class, 'destroy']);
 
 
-Route::get('/droneidd23/{id}', [DroneController::class, 'getOneData']);
+Route::get('/getDroneLocation/{id}', [DroneController::class, 'getDroneLocation']);

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
+use App\Http\Resources\ShowDroneLocationResource;
+use App\Models\Battery;
 use App\Models\Drone;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class DroneController extends Controller
@@ -33,8 +36,14 @@ class DroneController extends Controller
      */
     public function show(string $id)
     {
-        $drones = Drone::find($id);
-        $drones = new DroneResource($drones);
+        $data = Drone::where('drones_id', $id)->first();
+
+        if (!$data) {
+            return response('Data not found', 404);
+        }
+        $drones = new DroneResource($data);
+        // dd($drones);
+
         return response()->json(['success' => true, 'data' => $drones], 200);
     }
 
@@ -57,14 +66,17 @@ class DroneController extends Controller
         return response()->json(['success' => true, 'message' => 'delete successfully'], 200);
     }
 
-    public function getOneData(string $param)
+    // -------------------------get location of drone by ID---------------------------------------
+    public function getDroneLocation(string $id)
     {
-        $data = DB::table('drones')->where('drones_id', $param)->first();
+        $data = Drone::where('drones_id', $id)->first();
 
         if (!$data) {
             return response('Data not found', 404);
         }
-        $drones = new DroneResource($data);
+        $drones = new ShowDroneLocationResource($data);
+        // dd($drones);
+        
         return response()->json(['success' => true, 'data' => $drones], 200);
     }
 }

@@ -30,8 +30,14 @@ class MapRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'place' => 'required',
-            'drone_id' => 'required'
+            'type' => [
+                'required',
+                Rule::unique('images')->ignore($this->id),
+            ],
+            'date' => 'required',
+            'area' => 'required',
+            'image' => 'required',
+            'drone_id' => 'required',
         ];
     }
 }
