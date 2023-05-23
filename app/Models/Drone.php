@@ -14,14 +14,14 @@ class Drone extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
+        'drones_id',
         'droneTypes',
         'modelNumber',
         'manufacturer',
         'size',
         'time',
         'purpose',
-        'intructions',
+        'instructions',
         'farmer_id',
         'location_id',
         'user_id',
