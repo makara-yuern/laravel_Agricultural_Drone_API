@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
-            $table->string("place");
+            $table->string("type");
+            $table->date("date");
+            $table->string("area");
+            $table->string("image");
+            
             $table->unsignedBigInteger('drone_id');
             $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');
             $table->timestamps();

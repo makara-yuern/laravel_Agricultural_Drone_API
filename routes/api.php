@@ -90,3 +90,6 @@ Route::post('/battery', [BatteryController::class, 'store']);
 Route::get('/battery/{id}', [BatteryController::class, 'show']);
 Route::put('/battery/{id}', [BatteryController::class, 'update']);
 Route::delete('/battery/{id}', [BatteryController::class, 'destroy']);
+
+
+Route::get('/getDroneLocation/{id}', [DroneController::class, 'getDroneLocation']);
