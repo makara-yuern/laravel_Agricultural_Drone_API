@@ -27,9 +27,14 @@ class Drone extends Model
         'user_id',
     ];
 
+    public function planes(): BelongsToMany
+    {
+        return $this->belongsToMany(Plan::class, 'drone_plans');
+    }
+
     public static function store($reques, $id = null)
     {
-        $drone = $reques->only(['droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id', 'location_id',]);
+        $drone = $reques->only(['drones_id', 'droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id', 'location_id', 'instructions']);
 
         $drone = self::updateOrCreate(['id' => $id], $drone);
 

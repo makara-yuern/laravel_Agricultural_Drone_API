@@ -24,9 +24,9 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        dd(3);
-        // $user = User::store($request);
-        // return response()->json(['success' => true, 'data' => $user], 200);
+        // dd(3);
+        $user = User::store($request);
+        return response()->json(['success' => true, 'data' => $user], 200);
     }
 
     /**

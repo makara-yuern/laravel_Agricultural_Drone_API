@@ -36,6 +36,7 @@ class ImageRequest extends FormRequest
             ],
             'date' => 'required',
             'area' => 'required',
+            'image' => 'required',
             'drone_id' => 'required',
         ];
     }

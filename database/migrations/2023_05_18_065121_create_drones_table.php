@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('drones', function (Blueprint $table) {
             $table->id();
+            $table->string("drones_id");
             $table->string("droneTypes");
             $table->string("modelNumber");
             $table->string("manufacturer");
             $table->string("size");
             $table->string("time");
             $table->text("purpose");
+            $table->text("instructions");
             $table->unsignedBigInteger('farmer_id');
             $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');
 
