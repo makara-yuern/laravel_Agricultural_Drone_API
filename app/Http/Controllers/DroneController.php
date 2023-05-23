@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
-use App\Models\Battery;
 use App\Models\Drone;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DroneController extends Controller
 {
@@ -36,8 +35,7 @@ class DroneController extends Controller
     {
         $drones = Drone::find($id);
         $drones = new DroneResource($drones);
-        return response()->json(['success' =>true, 'data' => $drones],200);
-
+        return response()->json(['success' => true, 'data' => $drones], 200);
     }
 
     /**
@@ -46,7 +44,7 @@ class DroneController extends Controller
     public function update(DroneRequest $request, string $id)
     {
         $drones = Drone::store($request, $id);
-        return response()->json(['success' =>true, 'data' => $drones], 200);
+        return response()->json(['success' => true, 'data' => $drones], 200);
     }
 
     /**
@@ -56,6 +54,17 @@ class DroneController extends Controller
     {
         $drones = Drone::find($id);
         $drones->delete();
-        return response()->json(['success' =>true, 'message'=>'delete successfully'], 200);
+        return response()->json(['success' => true, 'message' => 'delete successfully'], 200);
+    }
+
+    public function getOneData(string $param)
+    {
+        $data = DB::table('drones')->where('drones_id', $param)->first();
+
+        if (!$data) {
+            return response('Data not found', 404);
+        }
+        $drones = new DroneResource($data);
+        return response()->json(['success' => true, 'data' => $drones], 200);
     }
 }
