@@ -65,8 +65,8 @@ class Drone extends Model
         return $this->hasMany(Image::class);
     }
 
-    public function battery():HasOne
+    public function battery():HasMany
     {
-        return $this->hasOne(Battery::class);
+        return $this->hasMany(Battery::class);
     }
 }
