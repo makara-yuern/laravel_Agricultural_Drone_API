@@ -16,12 +16,14 @@ class DroneResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'drones_id' => $this->drones_id,
             'droneTypes' => $this->droneTypes,
             'modelNumber' => $this->modelNumber,
             'manufacturer' => $this->manufacturer,
             'size' => $this->size,
             'time' => $this->time,
             'purpose' => $this->purpose,
+            'instructions' => $this->instructions,
             'farmer' => $this->farmer,
             'user' => $this->user,
             'location' => $this->location,

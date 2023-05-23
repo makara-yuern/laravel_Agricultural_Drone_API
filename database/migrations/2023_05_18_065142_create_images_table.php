@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("type");
             $table->date("date");
             $table->string("area");
+            $table->string("image");
             
             $table->unsignedBigInteger('drone_id');
             $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');

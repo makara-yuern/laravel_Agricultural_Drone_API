@@ -19,6 +19,7 @@ class ImageResource extends JsonResource
             'type' => $this->type,
             'date' => $this->date,
             'area' => $this->area,
+            'image' => $this->image,
             'drone' => $this->drone,
         ];
     }

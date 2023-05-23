@@ -14,20 +14,27 @@ class Drone extends Model
     use HasFactory;
 
     protected $fillable = [
+        'drones_id',
         'droneTypes',
         'modelNumber',
         'manufacturer',
         'size',
         'time',
         'purpose',
+        'instructions',
         'farmer_id',
         'location_id',
         'user_id',
     ];
 
+    public function planes(): BelongsToMany
+    {
+        return $this->belongsToMany(Plan::class, 'drone_plans');
+    }
+
     public static function store($reques, $id = null)
     {
-        $drone = $reques->only(['droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id', 'location_id',]);
+        $drone = $reques->only(['drones_id', 'droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id', 'location_id', 'instructions']);
 
         $drone = self::updateOrCreate(['id' => $id], $drone);
 
@@ -66,10 +73,5 @@ class Drone extends Model
     public function map():HasOne
     {
         return $this->hasOne(Map::class);
-    }
-
-    public function plans(): BelongsToMany
-    {
-        return $this->belongsToMany(Plan::class, 'drone_plans');
     }
 }
