@@ -60,7 +60,7 @@ class Drone extends Model
         return $this->belongsTo(Farmer::class);
     }
 
-    public function images():HasMany
+    public function maps():HasMany
     {
         return $this->hasMany(Image::class);
     }
@@ -68,10 +68,5 @@ class Drone extends Model
     public function battery():HasOne
     {
         return $this->hasOne(Battery::class);
-    }
-
-    public function map():HasOne
-    {
-        return $this->hasOne(Map::class);
     }
 }

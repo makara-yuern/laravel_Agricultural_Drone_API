@@ -56,13 +56,6 @@ Route::get('/location/{id}', [LocationController::class, 'show']);
 Route::put('/location/{id}', [LocationController::class, 'update']);
 Route::delete('/location/{id}', [LocationController::class, 'destroy']);
 
-// -----------------------API Route for image-----------------------------------------
-Route::get('/images', [ImageController::class, 'index']);
-Route::post('/image', [ImageController::class, 'store']);
-Route::get('/image/{id}', [ImageController::class, 'show']);
-Route::put('/image/{id}', [ImageController::class, 'update']);
-Route::delete('/image/{id}', [ImageController::class, 'destroy']);
-
 // -----------------------API Route for farmer-----------------------------------------
 Route::get('/farmers', [FarmerController::class, 'index']);
 Route::post('/farmer', [FarmerController::class, 'store']);

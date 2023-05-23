@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Map extends Model
 {
@@ -14,23 +12,23 @@ class Map extends Model
 
     protected $fillable = [
         'type',
-        'date',
+        'dateTime',
         'area',
-        'image',
+        'images',
         'drone_id',
     ];
 
     public static function store($reques, $id = null)
     {
-        $map = $reques->only(['type', 'date','area','image', 'drone_id']);
+        $map = $reques->only(['type', 'dateTime','area','images', 'drone_id']);
 
         $map = self::updateOrCreate(['id' => $id], $map);
 
         return $map;
     }
 
-    public function drone():HasOne
+    public function drone():BelongsTo
     {
-        return $this->hasOne(Drone::class);
+        return $this->belongsTo(Drone::class);
     }
 }
