@@ -22,9 +22,10 @@ class DroneResource extends JsonResource
             'size' => $this->size,
             'time' => $this->time,
             'purpose' => $this->purpose,
-            'farmer_id' => $this->farmer,
-            'user_id' => $this->user,
-            'location_id' => $this->location,
+            'intructions' => $this->intructions,
+            'farmer' => $this->farmer,
+            'user' => $this->user,
+            'location' => $this->location,
         ];
     }
 }

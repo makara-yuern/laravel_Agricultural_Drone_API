@@ -24,4 +24,9 @@ class Location extends Model
 
         return $location;
     }
+
+    public function drones():HasMany
+    {
+        return $this->hasMany(Drone::class);
+    }
 }

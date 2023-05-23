@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Farm extends Model
 {
@@ -22,5 +23,10 @@ class Farm extends Model
         $farm = self::updateOrCreate(['id' => $id], $farm);
 
         return $farm;
+    }
+
+    public function farmer():BelongsTo
+    {
+        return $this->belongsTo(Farmer::class);
     }
 }

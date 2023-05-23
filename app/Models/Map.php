@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Map extends Model
 {
@@ -21,5 +22,10 @@ class Map extends Model
         $map = self::updateOrCreate(['id' => $id], $map);
 
         return $map;
+    }
+
+    public function drone():BelongsTo
+    {
+        return $this->belongsTo(Drone::class);
     }
 }

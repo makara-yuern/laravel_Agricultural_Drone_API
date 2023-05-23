@@ -25,6 +25,4 @@ class Battery extends Model
 
         return $battery;
     }
-
-    
 }
