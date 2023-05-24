@@ -33,15 +33,13 @@ class PlanRequest extends FormRequest
             'planTypes' => [
                 'required',
                 'min:5',
-                'max:10',
+                'max:15',
             ],
             'location' => 'required',
             'cropTypes' => 'required',
             'date' => 'required',
-            'time' => [
-                'required',
-                Rule::unique('plans')->ignore($this->id),
-            ] ,
+            'time' => 'required',
+   
         ];
     }
 }

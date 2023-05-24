@@ -60,23 +60,13 @@ class Drone extends Model
         return $this->belongsTo(Farmer::class);
     }
 
-    public function images():HasMany
+    public function maps():HasMany
     {
         return $this->hasMany(Image::class);
     }
 
-    public function battery():HasOne
+    public function battery():HasMany
     {
-        return $this->hasOne(Battery::class);
-    }
-
-    public function map():HasOne
-    {
-        return $this->hasOne(Map::class);
-    }
-
-    public function plans(): BelongsToMany
-    {
-        return $this->belongsToMany(Plan::class, 'drone_plans');
+        return $this->hasMany(Battery::class);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MapResource extends JsonResource
+class FarmMapResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,9 @@ class MapResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'type' => $this->type,
-            'dateTime' => $this->dateTime,
-            'area' => $this->area,
-            'images' => $this->images,
-            'drone' => $this->drone,
-            'farm' => $this->farm,
+            "id"=> $this->id,
+            "area"=> $this->area,
+            'image' => $this->images,
         ];
     }
 }

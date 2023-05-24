@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
             $table->string("type");
-            $table->date("date");
+            $table->dateTime("dateTime");
             $table->string("area");
-            $table->string("image");
+            $table->longText("images");
             
             $table->unsignedBigInteger('drone_id');
             $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');
+            $table->unsignedBigInteger('farm_id');
+            $table->foreign('farm_id')->references('id')->on('farms')->onDelete('cascade');
             $table->timestamps();
         });
     }
