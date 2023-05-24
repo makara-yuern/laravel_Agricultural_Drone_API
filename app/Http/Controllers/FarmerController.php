@@ -59,4 +59,3 @@ class FarmerController extends Controller
         return response()->json(['success' =>true, 'message'=>'delete successfully'], 200);
     }
 }
-

@@ -42,8 +42,6 @@ class DroneController extends Controller
             return response('Data not found', 404);
         }
         $drones = new DroneResource($data);
-        // dd($drones);
-
         return response()->json(['success' => true, 'data' => $drones], 200);
     }
 
@@ -75,8 +73,6 @@ class DroneController extends Controller
             return response('Data not found', 404);
         }
         $drones = new ShowDroneLocationResource($data);
-        // dd($drones);
-        
         return response()->json(['success' => true, 'data' => $drones], 200);
     }
 }
