@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('map_farms', function (Blueprint $table) {
+        Schema::create('maps', function (Blueprint $table) {
             $table->id();
+            $table->string("type");
+            $table->dateTime("dateTime");
+            $table->string("area");
+            $table->longText("images");
+            
+            $table->unsignedBigInteger('drone_id');
+            $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');
             $table->unsignedBigInteger('farm_id');
             $table->foreign('farm_id')->references('id')->on('farms')->onDelete('cascade');
-            $table->unsignedBigInteger('map_id');
-            $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('map_farms');
+        Schema::dropIfExists('maps');
     }
 };

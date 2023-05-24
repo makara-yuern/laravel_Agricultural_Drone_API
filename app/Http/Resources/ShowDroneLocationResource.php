@@ -15,15 +15,15 @@ class ShowDroneLocationResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'drones_id' => $this->drones_id,
-            'droneTypes' => $this->droneTypes,
-            'modelNumber' => $this->modelNumber,
-            'manufacturer' => $this->manufacturer,
-            'size' => $this->size,
-            'time' => $this->time,
-            'purpose' => $this->purpose,
-            'instructions' => $this->instructions,
+            // 'id' => $this->id,
+            // 'drones_id' => $this->drones_id,
+            // 'droneTypes' => $this->droneTypes,
+            // 'modelNumber' => $this->modelNumber,
+            // 'manufacturer' => $this->manufacturer,
+            // 'size' => $this->size,
+            // 'time' => $this->time,
+            // 'purpose' => $this->purpose,
+            // 'instructions' => $this->instructions,
             'location' => $this->location,
         ];
     }

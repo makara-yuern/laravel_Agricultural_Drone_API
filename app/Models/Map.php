@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Map extends Model
 {
@@ -16,11 +17,12 @@ class Map extends Model
         'area',
         'images',
         'drone_id',
+        'farm_id',
     ];
 
     public static function store($reques, $id = null)
     {
-        $map = $reques->only(['type', 'dateTime','area','images', 'drone_id']);
+        $map = $reques->only(['type', 'dateTime','area','images', 'drone_id', 'farm_id']);
 
         $map = self::updateOrCreate(['id' => $id], $map);
 
@@ -30,5 +32,10 @@ class Map extends Model
     public function drone():BelongsTo
     {
         return $this->belongsTo(Drone::class);
+    } 
+
+    public function farm(): BelongsTo
+    {
+        return $this->belongsTo(Farm::class);
     }
 }

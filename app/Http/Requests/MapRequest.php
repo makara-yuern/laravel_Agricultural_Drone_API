@@ -30,14 +30,12 @@ class MapRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => [
-                'required',
-                Rule::unique('maps')->ignore($this->id),
-            ],
+            'type' => 'required',
             'dateTime' => 'required',
             'area' => 'required',
             'images' => 'required',
             'drone_id' => 'required',
+            'farm_id' => 'required',
         ];
     }
 }
