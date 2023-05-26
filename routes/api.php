@@ -86,6 +86,7 @@ Route::delete('/battery/{id}', [BatteryController::class, 'destroy']);
 
 // -----------------------Route of all requirement-----------------------------------------
 Route::get('/getDroneLocation/{id}', [DroneController::class, 'getDroneLocation']);
+Route::delete("/destroyImage/{naem}/{id}", [MapController::class, "getDeleteImage"]);
 Route::get('/getData/{name}/{id}', [FarmController::class, 'downloagImage']);
 Route::get('/instruction', [DroneController::class, 'getInstruction']);
 Route::get('/getPlans/{name}', [PlanController::class, 'getPlansOrder66']);
