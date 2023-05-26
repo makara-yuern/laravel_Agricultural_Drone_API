@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("type");
             $table->dateTime("dateTime");
             $table->string("area");
-            $table->longText("images");
+            $table->longText("images")->nullable();
             
             $table->unsignedBigInteger('drone_id');
             $table->foreign('drone_id')->references('id')->on('drones')->onDelete('cascade');

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MapRequest;
 use App\Http\Resources\MapResource;
+use App\Models\Farm;
 use App\Models\Map;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MapController extends Controller
 {
@@ -55,5 +58,32 @@ class MapController extends Controller
         $map = Map::find($id);
         $map->delete();
         return response()->json(['success' => true, 'message' => "delete successfully"], 200);
+    }
+
+//  destroy Images
+    public function getDeleteImage($provinceName, $farmId)
+    {
+        $province = Map::where('area', $provinceName)->first();
+        $farms = $province->farm->where('id', $farmId)->first();
+        if($province){
+            if($farms){
+                if ($province->farm == null) {
+                    return response()->json(['Message' => 'Farm number ' . $farmId . ' in ' . $provinceName . " don't have any data to delete", 'status' => 200]);
+                }
+                else {
+                    $images = json_decode($province->images);
+                    $imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tourismcambodia.com%2Ftravelguides%2Fprovinces%2Fkampong-cham.htm&psig=AOvVaw1XK68RsLs7A0IElRBDydTp&ust=1684982503123000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKi17JX3jP8CFQAAAAAdAAAAABAI";
+                    if ($images === null) {
+                        $images = [];
+                    }
+                    $imageName = basename($imageUrl); // replace $imageUrl with the actual URL of the image
+                    $images = array_diff($images, [$imageName]);
+                    Storage::disk('public')->delete($imageName);
+                    $province->images = json_encode(array_values($images));
+                    $province->save();
+                    return response()->json(['message' => 'Completely delete the images from' . $provinceName . ' in farm number ' . $farmId, 'status' => 200]);
+                }
+            }
+        }
     }
 }

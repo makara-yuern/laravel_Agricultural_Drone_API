@@ -88,3 +88,4 @@ Route::delete('/battery/{id}', [BatteryController::class, 'destroy']);
 Route::get('/getDroneLocation/{id}', [DroneController::class, 'getDroneLocation']);
 Route::get('/farms/{name}/{id}', [FarmController::class, 'getImageFarmInKC']);
 Route::get('/getData/{name}/{id}', [FarmController::class, 'getData']);
+Route::delete("/destroyImage/{naem}/{id}", [MapController::class, "getDeleteImage"]);
