@@ -45,6 +45,7 @@ class FarmerRequest extends FormRequest
                 'required',
                 Rule::unique('farmers')->ignore($this->id),
             ],
+            
         ];
     }
 }

@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::create('maps', function (Blueprint $table) {
             $table->id();
-            $table->string("type");
-            $table->dateTime("dateTime");
             $table->string("area");
             $table->longText("images")->nullable();
             

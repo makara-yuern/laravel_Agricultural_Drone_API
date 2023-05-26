@@ -11,6 +11,7 @@ class Plan extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'planTypes',
         'location',
         'cropTypes',
@@ -25,7 +26,7 @@ class Plan extends Model
 
     public static function store($reques, $id = null)
     {
-        $user = $reques->only(['planTypes', 'location','cropTypes', 'date', 'time']);
+        $user = $reques->only(['name', 'planTypes', 'location','cropTypes', 'date', 'time']);
 
         $user = self::updateOrCreate(['id' => $id], $user);
 

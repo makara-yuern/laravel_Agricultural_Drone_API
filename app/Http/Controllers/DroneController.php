@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
+use App\Http\Resources\InstructionResource;
 use App\Http\Resources\ShowDroneLocationResource;
 use App\Models\Battery;
 use App\Models\Drone;
@@ -74,5 +75,14 @@ class DroneController extends Controller
         }
         $drones = new ShowDroneLocationResource($data);
         return response()->json(['success' => true, 'data' => $drones], 200);
+    }
+
+    public function getInstruction()
+    {
+        // dd(1);
+        $drone = Drone::all();
+        $drone = InstructionResource::collection($drone);
+        
+        return response()->json(['success' => true, 'data' => $drone], 200);
     }
 }

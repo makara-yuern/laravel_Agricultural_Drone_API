@@ -30,6 +30,7 @@ class PlanRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required',
             'planTypes' => [
                 'required',
                 'min:5',
@@ -39,7 +40,6 @@ class PlanRequest extends FormRequest
             'cropTypes' => 'required',
             'date' => 'required',
             'time' => 'required',
-   
         ];
     }
 }
