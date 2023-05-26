@@ -68,7 +68,7 @@ Route::get('/farms', [FarmController::class, 'index']);
 Route::post('/farm', [FarmController::class, 'store']);
 Route::get('/farm/{id}', [FarmController::class, 'show']);
 Route::put('/farm/{id}', [FarmController::class, 'update']);
-Route::delete('/farm/{id}', [FarmController::class, 'destroy']);
+
 
 // -----------------------API Route for drone-----------------------------------------
 Route::get('/drones', [DroneController::class, 'index']);
@@ -84,7 +84,9 @@ Route::get('/battery/{id}', [BatteryController::class, 'show']);
 Route::put('/battery/{id}', [BatteryController::class, 'update']);
 Route::delete('/battery/{id}', [BatteryController::class, 'destroy']);
 
-
+// -----------------------Route of all requirement-----------------------------------------
 Route::get('/getDroneLocation/{id}', [DroneController::class, 'getDroneLocation']);
-Route::get('/farms/{name}/{id}', [FarmController::class, 'getImageFarmInKC']);
-Route::get('/getData/{name}/{id}', [FarmController::class, 'getData']);
+Route::get('/getData/{name}/{id}', [FarmController::class, 'downloagImage']);
+Route::get('/instruction', [DroneController::class, 'getInstruction']);
+Route::get('/getPlans/{name}', [PlanController::class, 'getPlansOrder66']);
+Route::post('/maps/{area}/{farm_id}', [MapController::class, 'storeImage']);

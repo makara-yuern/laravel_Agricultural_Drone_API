@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateImageRequest;
 use App\Http\Requests\MapRequest;
 use App\Http\Resources\MapResource;
+use App\Models\CreateImage;
 use App\Models\Map;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class MapController extends Controller
 {
@@ -55,5 +59,21 @@ class MapController extends Controller
         $map = Map::find($id);
         $map->delete();
         return response()->json(['success' => true, 'message' => "delete successfully"], 200);
+    }
+
+    public function storeImage($area, $farm_id)
+    {
+        $province = Map::where('area', $area)->first();
+        $farms = $province->farm->where('id', $farm_id)->first();
+
+        if ($province) {
+            if ($farms) {
+                $province->update(
+                    ['images' => request('images')]
+                );
+                return 'create successfully!';
+            }
+        }
+
     }
 }

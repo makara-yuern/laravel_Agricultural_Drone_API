@@ -56,4 +56,12 @@ class PlanController extends Controller
         $plan->delete();
         return response()->json(['success' => true, 'message' => "delete successfully"], 200);
     }
+
+
+    public function getPlansOrder66(string $name)
+    {
+        $data = Plan::where(['name' => 'oreder66'], $name)->first();
+        // dd($data);
+        return response()->json(['success' => true, 'data' => $data], 200);
+    }
 }
