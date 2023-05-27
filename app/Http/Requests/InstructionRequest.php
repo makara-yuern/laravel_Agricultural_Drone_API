@@ -31,6 +31,7 @@ class InstructionRequest extends FormRequest
         return [
             'instructions' => 'required',
             'drone_id' => 'required',
+            'plan_id' => 'required',
         ];
     }
 }

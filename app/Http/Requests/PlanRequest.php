@@ -31,11 +31,7 @@ class PlanRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'planTypes' => [
-                'required',
-                'min:5',
-                'max:15',
-            ],
+            'planTypes' => 'required',
             'location' => 'required',
             'cropTypes' => 'required',
             'date' => 'required',

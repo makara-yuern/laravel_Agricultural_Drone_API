@@ -25,4 +25,9 @@ class Battery extends Model
 
         return $battery;
     }
+
+    public function drone():BelongsTo
+    {
+        return $this->belongsTo(Drone::class);
+    }
 }

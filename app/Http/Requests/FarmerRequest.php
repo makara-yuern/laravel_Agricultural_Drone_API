@@ -30,22 +30,10 @@ class FarmerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                'min:5',
-                'max:10',
-                Rule::unique('farmers')->ignore($this->id),
-            ],
+            'name' => 'required',
             'age' => 'required',
-            'email' => [
-                'required',
-                Rule::unique('farmers')->ignore($this->id),
-            ],
-            'password' => [
-                'required',
-                Rule::unique('farmers')->ignore($this->id),
-            ],
-            
+            'email' => 'required',
+            'password' => 'required',
         ];
     }
 }

@@ -30,12 +30,7 @@ class BatteryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'currentBatteries' => [
-                'required',
-                'min:3',
-                'max:8',
-                Rule::unique('batteries')->ignore($this->id),
-            ],
+            'currentBatteries' => 'required',
             'capacity' => 'required',
             'drone_id' => 'required',  
         ];

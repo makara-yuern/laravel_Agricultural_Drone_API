@@ -22,6 +22,8 @@ class PlanResource extends JsonResource
             'cropTypes' => $this->cropTypes,
             'date' => $this->date,
             'time' => $this->time,
+            'drones' => $this->drones,
+            'instructions' => $this->instruction
         ];
     }
 }

@@ -99,7 +99,7 @@ class MapController extends Controller
                 $province->update(
                     ['images' => request('images')]
                 );
-                return 'create successfully!';
+                return response()->json(['message' => 'Completely created the images from farm number ' . $farm_id, 'status' => 200]);
             }
         }
 

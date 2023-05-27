@@ -18,6 +18,7 @@ class InstructionResource extends JsonResource
             'id' => $this->id,
             'instructions' => $this->instructions,
             'drone' => $this->drone,
+            'plan' => $this->plan,
         ];
     }
 }

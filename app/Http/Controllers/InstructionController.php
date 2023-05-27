@@ -16,6 +16,7 @@ class InstructionController extends Controller
      */
     public function index()
     {
+        // dd(1);
         $instruction = Instruction::all();
         $instruction = InstructionResource::collection($instruction);
         return response()->json(['success' => true, 'data' => $instruction], 200);

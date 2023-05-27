@@ -20,6 +20,8 @@ class FarmerResource extends JsonResource
             'age' => $this->age,
             'email' => $this->email,
             'password' => $this->password,
+            'drones' => $this->drones,
+            'farms' => $this->farms,
         ];
     }
 }
