@@ -24,7 +24,6 @@ class DroneResource extends JsonResource
             'size' => $this->size,
             'time' => $this->time,
             'purpose' => $this->purpose,
-            'instructions' => $this->instructions,
             'farmer' => $this->farmer,
             'user' => $this->user,
             'location' => $this->location,

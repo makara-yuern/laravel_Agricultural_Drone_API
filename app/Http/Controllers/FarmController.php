@@ -55,12 +55,12 @@ class FarmController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    // public function destroy(string $id)
-    // {
-    //     $farms = Farm::find($id);
-    //     $farms->delete();
-    //     return response()->json(['success' => true, 'message' => 'delete successfully'], 200);
-    // }
+    public function destroy(string $id)
+    {
+        $farms = Farm::find($id);
+        $farms->delete();
+        return response()->json(['success' => true, 'message' => 'delete successfully'], 200);
+    }
 
     public function downloagImage($name, $id)
     {

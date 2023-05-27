@@ -21,7 +21,6 @@ class Drone extends Model
         'size',
         'time',
         'purpose',
-        'instructions',
         'farmer_id',
         'location_id',
         'user_id',
@@ -34,7 +33,7 @@ class Drone extends Model
 
     public static function store($reques, $id = null)
     {
-        $drone = $reques->only(['drones_id', 'droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id', 'location_id', 'instructions']);
+        $drone = $reques->only(['drones_id', 'droneTypes', 'modelNumber','manufacturer', 'size','time', 'purpose', 'farmer_id', 'user_id', 'location_id',]);
 
         $drone = self::updateOrCreate(['id' => $id], $drone);
 
@@ -68,5 +67,10 @@ class Drone extends Model
     public function battery():HasMany
     {
         return $this->hasMany(Battery::class);
+    }
+
+    public function instructions():HasMany
+    {
+        return $this->hasMany(Instruction::class);
     }
 }

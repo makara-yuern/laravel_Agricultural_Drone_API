@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string("size");
             $table->string("time");
             $table->text("purpose");
-            $table->text("instructions");
             $table->unsignedBigInteger('farmer_id');
             $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');
 

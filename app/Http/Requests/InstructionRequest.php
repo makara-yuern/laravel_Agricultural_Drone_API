@@ -5,9 +5,8 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
 
-class DroneRequest extends FormRequest
+class InstructionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,16 +29,8 @@ class DroneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'drones_id' => 'required',
-            'droneTypes' => 'required',
-            'modelNumber' => 'required',
-            'manufacturer' => 'required',
-            'size' => 'required',
-            'time' => 'required',
-            'purpose' => 'required',
-            'farmer_id' => 'required',
-            'user_id' => 'required',
-            'location_id' => 'required',
+            'instructions' => 'required',
+            'drone_id' => 'required',
         ];
     }
 }

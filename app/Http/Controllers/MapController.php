@@ -73,7 +73,9 @@ class MapController extends Controller
                 }
                 else {
                     $images = json_decode($province->images);
-                    $imageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.tourismcambodia.com%2Ftravelguides%2Fprovinces%2Fkampong-cham.htm&psig=AOvVaw1XK68RsLs7A0IElRBDydTp&ust=1684982503123000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKi17JX3jP8CFQAAAAAdAAAAABAI";
+                    $image = $province->images;
+                    $imageUrl = $image;
+                    // dd($imageUrl);
                     if ($images === null) {
                         $images = [];
                     }

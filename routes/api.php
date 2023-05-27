@@ -5,6 +5,7 @@ use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\InstructionController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\PlanController;
@@ -84,10 +85,18 @@ Route::get('/battery/{id}', [BatteryController::class, 'show']);
 Route::put('/battery/{id}', [BatteryController::class, 'update']);
 Route::delete('/battery/{id}', [BatteryController::class, 'destroy']);
 
+// -----------------------API Route for Instruction-----------------------------------------
+Route::get('/instructions', [InstructionController::class, 'index']);
+Route::post('/instruction', [InstructionController::class, 'store']);
+
+Route::get('/instruction/{id}', [InstructionController::class, 'show']);//
+
+Route::put('/instruction/{droneId}/{id}', [InstructionController::class, 'update']);
+Route::delete('/instruction/{id}', [InstructionController::class, 'destroy']);
+
 // -----------------------Route of all requirement-----------------------------------------
 Route::get('/getDroneLocation/{id}', [DroneController::class, 'getDroneLocation']);
 Route::delete("/destroyImage/{naem}/{id}", [MapController::class, "getDeleteImage"]);
 Route::get('/getData/{name}/{id}', [FarmController::class, 'downloagImage']);
-Route::get('/instruction', [DroneController::class, 'getInstruction']);
 Route::get('/getPlans/{name}', [PlanController::class, 'getPlansOrder66']);
 Route::post('/maps/{area}/{farm_id}', [MapController::class, 'storeImage']);
