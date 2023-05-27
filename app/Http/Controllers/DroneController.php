@@ -6,11 +6,7 @@ use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
 use App\Http\Resources\InstructionResource;
 use App\Http\Resources\ShowDroneLocationResource;
-use App\Models\Battery;
 use App\Models\Drone;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 class DroneController extends Controller
 {
     /**
@@ -79,7 +75,6 @@ class DroneController extends Controller
 
     public function getInstruction()
     {
-        // dd(1);
         $drone = Drone::all();
         $drone = InstructionResource::collection($drone);
         

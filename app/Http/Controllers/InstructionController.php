@@ -7,7 +7,6 @@ use App\Http\Requests\StoreInstructionRequest;
 use App\Http\Resources\InstructionResource;
 use App\Models\Drone;
 use App\Models\Instruction;
-use Illuminate\Http\Request;
 
 class InstructionController extends Controller
 {
@@ -16,7 +15,6 @@ class InstructionController extends Controller
      */
     public function index()
     {
-        // dd(1);
         $instruction = Instruction::all();
         $instruction = InstructionResource::collection($instruction);
         return response()->json(['success' => true, 'data' => $instruction], 200);
@@ -47,7 +45,6 @@ class InstructionController extends Controller
     public function update(StoreInstructionRequest $request, $droneId, $id)
     {
         $data = Drone::where('drones_id', $droneId)->first();
-        // dd($data);
         if($data){
             $instruction = Instruction::store($request, $id);
             return response()->json(['success' =>true, 'data' => $instruction], 200);

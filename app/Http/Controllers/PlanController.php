@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PlanRequest;
 use App\Http\Resources\PlanResource;
 use App\Models\Plan;
-use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
@@ -61,7 +60,6 @@ class PlanController extends Controller
     public function getPlansOrder66(string $name)
     {
         $data = Plan::where(['name' => 'oreder66'], $name)->first();
-        // dd($data);
         return response()->json(['success' => true, 'data' => $data], 200);
     }
 }

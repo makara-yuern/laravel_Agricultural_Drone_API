@@ -1,14 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Requests\CreateImageRequest;
 use App\Http\Requests\MapRequest;
 use App\Http\Resources\MapResource;
-use App\Models\Farm;
 use App\Models\Map;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class MapController extends Controller
@@ -61,7 +56,7 @@ class MapController extends Controller
         return response()->json(['success' => true, 'message' => "delete successfully"], 200);
     }
 
-//  destroy Images
+//  ----------------destroy Images---------------------------------
     public function getDeleteImage($provinceName, $farmId)
     {
         $province = Map::where('area', $provinceName)->first();
@@ -75,7 +70,6 @@ class MapController extends Controller
                     $images = json_decode($province->images);
                     $image = $province->images;
                     $imageUrl = $image;
-                    // dd($imageUrl);
                     if ($images === null) {
                         $images = [];
                     }
@@ -89,6 +83,8 @@ class MapController extends Controller
             }
         }
     }
+
+// -------------------------create image---------------------------------------
     public function storeImage($area, $farm_id)
     {
         $province = Map::where('area', $area)->first();

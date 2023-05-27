@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BatteryRequest;
 use App\Http\Resources\BatteryResource;
 use App\Models\Battery;
-use Illuminate\Http\Request;
 
 class BatteryController extends Controller
 {

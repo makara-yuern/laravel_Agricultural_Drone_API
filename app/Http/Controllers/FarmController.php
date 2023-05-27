@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FarmRequest;
-use App\Http\Resources\FarmMapResource;
 use App\Http\Resources\FarmResource;
 use App\Models\Farm;
 use App\Models\Map;
-use Illuminate\Support\Facades\Storage;
 
 class FarmController extends Controller
 {
@@ -16,11 +14,8 @@ class FarmController extends Controller
      */
     public function index()
     {
-        // dd(1);
         $farms = Farm::all();
-        // dd($farms);
         $farm = FarmResource::collection($farms);
-        // dd($farm);
         return response()->json(['success' => true, 'data' => $farm], 201);
     }
 

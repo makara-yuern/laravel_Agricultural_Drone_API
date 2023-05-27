@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LocationRequest;
 use App\Http\Resources\LocationResource;
 use App\Models\Location;
-use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {

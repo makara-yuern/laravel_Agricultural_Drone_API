@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FarmerRequest;
-use App\Http\Requests\FarmRequest;
 use App\Http\Resources\FarmerResource;
-use App\Http\Resources\FarmResource;
 use App\Models\Farmer;
-use Illuminate\Http\Request;
 
 class FarmerController extends Controller
 {
